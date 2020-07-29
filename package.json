@@ -4,14 +4,17 @@
   "description": "Reads a config.json file and overrides values with environment variables",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node ./test/index.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/redsoxfantom/simple-envvar-override-config.git"
   },
   "keywords": [
-    "config"
+    "config",
+    "json",
+    "environment",
+    "envvar"
   ],
   "author": "redsoxfantom",
   "license": "ISC",
