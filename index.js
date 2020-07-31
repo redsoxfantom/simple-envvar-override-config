@@ -38,25 +38,27 @@ function merge_dicts(source, override) {
     return source
 }
 
-module.exports = (config = {}, file) => {
-    if(!config.hasOwnProperty("prefix_delimiter")) {
-        config.prefix_delimiter = "_"
+module.exports = (overrideconfig = {}, config) => {
+    if(!overrideconfig.hasOwnProperty("prefix_delimiter")) {
+        overrideconfig.prefix_delimiter = "_"
     }
-    if(!config.hasOwnProperty("prefix")) {
-        config.prefix = "ENVCONFIG"
+    if(!overrideconfig.hasOwnProperty("prefix")) {
+        overrideconfig.prefix = "ENVCONFIG"
     }
-    if(!config.prefix.endsWith(config.prefix_delimiter)) {
-        config.prefix = config.prefix.concat(config.prefix_delimiter)
+    if(!overrideconfig.prefix.endsWith(overrideconfig.prefix_delimiter)) {
+        overrideconfig.prefix = overrideconfig.prefix.concat(overrideconfig.prefix_delimiter)
     }
-    if(!config.hasOwnProperty("property_delimiter")) {
-        config.property_delimiter = "."
+    if(!overrideconfig.hasOwnProperty("property_delimiter")) {
+        overrideconfig.property_delimiter = "."
     }
-    if(!config.hasOwnProperty("envvardict")) {
-        config.envvardict = process.env
+    if(!overrideconfig.hasOwnProperty("envvardict")) {
+        overrideconfig.envvardict = process.env
     }
 
-    const overridevars = extract_override_vars(config)
-    const configfile = require(file)
-
-    return merge_dicts(configfile, overridevars)
+    let overridevars = extract_override_vars(overrideconfig)
+    
+    if(typeof config === "string") {
+        return merge_dicts(require(config), overridevars)
+    }
+    return merge_dicts(config, overridevars)
 }
