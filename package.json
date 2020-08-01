@@ -1,6 +1,6 @@
 {
   "name": "simple-envvar-override-config",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Reads a config.json file and overrides values with environment variables",
   "main": "index.js",
   "scripts": {

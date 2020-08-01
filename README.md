@@ -2,6 +2,8 @@
 
 Allows you to read in a config file and selectively overwrite values based off of environment variables.
 
+Config can be a file or just a dictionary
+
 ## Example
 Given the following config file:
 ```json
@@ -42,6 +44,5 @@ Will print the following:
 ```
 
 ## TODOS
-1) Implement proper unit testing
 2) Handle arrays
 3) Handle defining "type" of value in env var. Right now everything is a string
